@@ -280,23 +280,20 @@
             text-transform: uppercase;
         }
 
-        /* Owner Highlight Section */
+        /* Owner Highlight Section (Centered Text Layout) */
         .owner-section {
             padding: 6rem 2rem;
             position: relative;
         }
 
         .owner-card {
-            max-width: 1100px;
+            max-width: 900px;
             margin: auto;
             background: var(--dark-card);
             border: 1px solid var(--border-gold);
             border-radius: 24px;
             padding: 4rem 3.5rem;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 4rem;
-            align-items: center;
+            text-align: center;
             backdrop-filter: blur(12px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             position: relative;
@@ -311,25 +308,6 @@
             width: 100%;
             height: 3px;
             background: var(--gold-gradient);
-        }
-
-        .owner-avatar {
-            position: relative;
-            text-align: center;
-        }
-
-        .owner-avatar img {
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--gold-primary);
-            box-shadow: 0 0 30px var(--gold-glow);
-            transition: transform 0.4s;
-        }
-
-        .owner-avatar:hover img {
-            transform: scale(1.03);
         }
 
         .owner-info h3 {
@@ -349,16 +327,16 @@
         .owner-quote {
             font-style: italic;
             color: #d1d1d8;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
-            border-left: 3px solid var(--gold-primary);
-            padding-left: 1.2rem;
+            margin: 0 auto 2rem;
+            max-width: 750px;
         }
 
         .owner-features {
             display: flex;
             gap: 1.5rem;
+            justify-content: center;
             flex-wrap: wrap;
         }
 
@@ -671,7 +649,7 @@
 
         /* Responsive */
         @media (max-width: 960px) {
-            .owner-card, .booking-container {
+            .booking-container {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
                 padding: 3rem 2rem;
@@ -679,7 +657,6 @@
             .hero h1 { font-size: 2.8rem; }
             .nav-links { display: none; }
             .contact-detail-item { justify-content: flex-start; }
-            .owner-avatar img { width: 180px; height: 180px; }
         }
     </style>
 </head>
@@ -748,12 +725,9 @@
         </div>
     </div>
 
-    <!-- Owner / Founder Spotlight Section -->
+    <!-- Owner / Founder Spotlight Section (Clean Centered Text Layout) -->
     <section id="owner" class="owner-section">
         <div class="owner-card">
-            <div class="owner-avatar">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Dinesh Kumar Sharma - Founder">
-            </div>
             <div class="owner-info">
                 <h3 class="gold-shimmer">DINESH KUMAR SHARMA</h3>
                 <div class="owner-title">Founder & Managing Director | Banti Studio</div>
