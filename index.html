@@ -9,6 +9,11 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase Cloud SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+
     <style>
         :root {
             --gold-primary: #f39c12;
@@ -39,7 +44,6 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* Scrollbar styling */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -413,7 +417,7 @@
             border-radius: 50%;
             width: 36px;
             height: 36px;
-            display: none; /* Hidden for standard visitors */
+            display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -427,7 +431,6 @@
             transform: scale(1.15);
         }
 
-        /* Show Delete Buttons Only When Owner Mode is Active */
         body.owner-mode .delete-photo-btn {
             display: flex;
         }
@@ -525,7 +528,6 @@
             border-color: var(--gold-primary);
         }
 
-        /* Floating Contact Buttons */
         .floating-actions {
             position: fixed;
             bottom: 25px;
@@ -557,7 +559,6 @@
         .float-wa { background-color: #25d366; }
         .float-call { background-color: #3498db; }
 
-        /* Footer */
         footer {
             background: #050507;
             text-align: center;
@@ -567,7 +568,6 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive Breakpoints */
         @media (max-width: 900px) {
             .booking-container {
                 grid-template-columns: 1fr;
@@ -686,7 +686,7 @@
         </div>
     </section>
 
-    <!-- Interactive Gallery with LocalStorage Persistence -->
+    <!-- Interactive Gallery with Cloud Sync -->
     <section id="gallery" class="gallery-section">
         <div class="section-header">
             <h2>Event Gallery</h2>
@@ -695,10 +695,9 @@
 
         <!-- Owner Control Block -->
         <div class="upload-container" id="ownerUploadContainer">
-            <!-- Locked State -->
             <div id="ownerLockScreen">
                 <p style="font-size: 0.9rem; color: var(--gold-primary); margin-bottom: 0.6rem;">
-                    <i class="fa-solid fa-lock"></i> Owner Controls (Upload & Delete Photos)
+                    <i class="fa-solid fa-lock"></i> Owner Controls (Live Cloud Upload & Delete)
                 </p>
                 <div style="display: flex; justify-content: center; gap: 0.5rem; max-width: 340px; margin: auto;">
                     <input type="password" id="ownerPasskey" placeholder="Enter Owner Passkey" style="padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid var(--border-gold); background: #121218; color: #fff; width: 65%; font-size: 0.85rem; outline: none;">
@@ -707,18 +706,17 @@
                 <p id="passkeyError" style="color: #e74c3c; font-size: 0.75rem; margin-top: 0.4rem; display: none;">Incorrect Passkey! Access Denied.</p>
             </div>
 
-            <!-- Unlocked Upload & Admin Panel -->
             <div id="ownerUploadPanel" style="display: none;">
                 <label for="gallery-file-upload" class="upload-label">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photo to Gallery
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photo Live to Website
                 </label>
-                <input type="file" id="gallery-file-upload" accept="image/*" style="display: none;" onchange="uploadToGallery(event)">
+                <input type="file" id="gallery-file-upload" accept="image/*" style="display: none;" onchange="uploadToCloud(event)">
                 <div style="margin-top: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 1rem;">
                     <span style="font-size: 0.8rem; color: var(--gold-light);">
-                        <i class="fa-solid fa-user-shield"></i> Owner Mode Active (Delete buttons visible on photos)
+                        <i class="fa-solid fa-user-shield"></i> Owner Mode Active
                     </span>
                     <button type="button" onclick="lockOwnerUpload()" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #ccc; padding: 0.2rem 0.8rem; border-radius: 15px; cursor: pointer; font-size: 0.75rem;">
-                        <i class="fa-solid fa-lock"></i> Lock
+                        <i class="fa-solid fa-lock"></i> Lock Controls
                     </button>
                 </div>
             </div>
@@ -731,7 +729,7 @@
             <button class="filter-btn" onclick="filterGallery('shoot', event)">Photography</button>
         </div>
 
-        <!-- Gallery Grid dynamically populated via JS LocalStorage -->
+        <!-- Dynamic Real-Time Gallery Grid -->
         <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
@@ -809,64 +807,114 @@
         <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #666;">Owned and Managed by <strong>Dinesh Kumar Sharma</strong> | Contact: +91 9235734716</p>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Firebase & Gallery Application Engine -->
     <script>
-        /* OWNER PASSKEY CONFIGURATION */
+        /* -------------------------------------------------------------
+           1. REPLACE THESE WITH YOUR FREE FIREBASE KEYS (Instructions Below)
+        ------------------------------------------------------------- */
+        const firebaseConfig = {
+            apiKey: "YOUR_FIREBASE_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Cloud Engine
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
         const OWNER_PASSKEY = "9235"; 
 
-        /* DEFAULT GALLERY PHOTOS */
-        const DEFAULT_PHOTOS = [
-            { id: 1, category: 'wedding', src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80', title: 'Royal Wedding Varmala Stage', subtitle: 'Jaunpur Setup' },
-            { id: 2, category: 'stage', src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80', title: 'Fresh Flower Stage Backdrop', subtitle: 'Luxury Theme' },
-            { id: 3, category: 'shoot', src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80', title: 'Pre-Wedding Portrait', subtitle: 'Outdoor Location' },
-            { id: 4, category: 'wedding', src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80', title: 'Traditional Mandap Decor', subtitle: 'Night Illumination' },
-            { id: 5, category: 'stage', src: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80', title: 'Theme Entry Gate', subtitle: 'LED & Balloon Concept' },
-            { id: 6, category: 'shoot', src: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80', title: 'Bridal Portfolio Shoot', subtitle: 'Studio Photography' }
-        ];
-
-        /* PERSISTENT STORAGE MANAGEMENT */
-        function getGalleryData() {
-            const stored = localStorage.getItem('banti_studio_gallery_v2');
-            if (stored) {
-                return JSON.parse(stored);
-            } else {
-                localStorage.setItem('banti_studio_gallery_v2', JSON.stringify(DEFAULT_PHOTOS));
-                return DEFAULT_PHOTOS;
-            }
-        }
-
-        function saveGalleryData(data) {
-            localStorage.setItem('banti_studio_gallery_v2', JSON.stringify(data));
-        }
-
-        /* RENDER GALLERY FROM STORAGE */
-        function renderGallery() {
-            const data = getGalleryData();
+        /* -------------------------------------------------------------
+           2. REAL-TIME CLOUD GALLERY SYNCHRONIZATION
+        ------------------------------------------------------------- */
+        db.collection('gallery').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
             const grid = document.getElementById('galleryGrid');
             grid.innerHTML = '';
-            
-            data.forEach(item => {
+
+            if (snapshot.empty) {
+                grid.innerHTML = `<p style="text-align:center; grid-column:1/-1; color:var(--text-muted);">No photos uploaded yet. Owner can log in above to upload live photos!</p>`;
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const item = doc.data();
                 const div = document.createElement('div');
-                div.className = `gallery-item ${item.category}`;
+                div.className = `gallery-item ${item.category || 'shoot'}`;
                 div.onclick = function() { openLightbox(item.src); };
-                
+
                 div.innerHTML = `
-                    <button class="delete-photo-btn" onclick="deleteGalleryItem(${item.id}, event)" title="Delete Photo">
+                    <button class="delete-photo-btn" onclick="deleteFromCloud('${doc.id}', '${item.storagePath}', event)" title="Delete Photo">
                         <i class="fa-solid fa-trash"></i>
                     </button>
-                    <img src="${item.src}" alt="${item.title}">
+                    <img src="${item.src}" alt="${item.title || 'Studio Work'}">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h4>${item.title}</h4>
-                            <p>${item.subtitle}</p>
+                            <h4>${item.title || 'Studio Collection'}</h4>
+                            <p>${item.subtitle || 'Banti Studio Jaunpur'}</p>
                         </div>
                     </div>
                 `;
                 grid.appendChild(div);
             });
+        }, error => {
+            console.warn("Using sample grid until Firebase keys are pasted.");
+        });
+
+        /* -------------------------------------------------------------
+           3. OWNER CLOUD UPLOAD FUNCTION
+        ------------------------------------------------------------- */
+        function uploadToCloud(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const uploadBtn = document.querySelector('.upload-label');
+            uploadBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading to Cloud...`;
+
+            const fileName = Date.now() + '_' + file.name;
+            const storageRef = storage.ref('gallery/' + fileName);
+
+            storageRef.put(file).then(snapshot => {
+                return snapshot.ref.getDownloadURL();
+            }).then(downloadURL => {
+                return db.collection('gallery').add({
+                    src: downloadURL,
+                    storagePath: 'gallery/' + fileName,
+                    category: 'shoot',
+                    title: 'Uploaded Event Photo',
+                    subtitle: 'Banti Studio Jaunpur',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }).then(() => {
+                alert("Photo uploaded live to website! Every visitor can see it now.");
+                uploadBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Upload Photo Live to Website`;
+            }).catch(err => {
+                alert("Error uploading image: " + err.message);
+                uploadBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Upload Photo Live to Website`;
+            });
         }
 
-        /* OWNER AUTHENTICATION */
+        /* -------------------------------------------------------------
+           4. OWNER CLOUD DELETE FUNCTION
+        ------------------------------------------------------------- */
+        function deleteFromCloud(docId, storagePath, event) {
+            event.stopPropagation();
+            if (confirm("Are you sure you want to delete this photo live from the website globally?")) {
+                db.collection('gallery').doc(docId).delete().then(() => {
+                    if (storagePath) {
+                        storage.ref(storagePath).delete().catch(() => {});
+                    }
+                    alert("Photo deleted globally!");
+                }).catch(err => {
+                    alert("Error deleting: " + err.message);
+                });
+            }
+        }
+
+        /* OWNER AUTHENTICATION CONTROL */
         function unlockOwnerUpload() {
             const enteredPass = document.getElementById('ownerPasskey').value;
             const errorMsg = document.getElementById('passkeyError');
@@ -890,45 +938,7 @@
             document.getElementById('ownerPasskey').value = '';
         }
 
-        /* UPLOAD & PERMANENTLY SAVE PHOTO */
-        function uploadToGallery(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const data = getGalleryData();
-                    const newItem = {
-                        id: Date.now(),
-                        category: 'shoot',
-                        src: event.target.result,
-                        title: 'Uploaded Event Photo',
-                        subtitle: 'Banti Studio Collection'
-                    };
-                    
-                    data.unshift(newItem); // Add to beginning of array
-                    saveGalleryData(data);
-                    renderGallery();
-                    alert("Photo successfully saved and permanently stored in your gallery!");
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        /* DELETE & UPDATE STORAGE */
-        function deleteGalleryItem(id, event) {
-            event.stopPropagation(); // Prevents image lightbox opening
-            if (confirm("Are you sure you want to permanently delete this photo from the gallery?")) {
-                let data = getGalleryData();
-                data = data.filter(item => item.id !== id);
-                saveGalleryData(data);
-                renderGallery();
-            }
-        }
-
-        /* INITIAL LOAD HANDLER */
         window.addEventListener('DOMContentLoaded', () => {
-            renderGallery();
-
             if (sessionStorage.getItem('ownerLoggedIn') === 'true') {
                 const lockScreen = document.getElementById('ownerLockScreen');
                 const uploadPanel = document.getElementById('ownerUploadPanel');
@@ -940,7 +950,6 @@
             }
         });
 
-        /* CATEGORY FILTERING */
         function filterGallery(category, evt) {
             const items = document.querySelectorAll('.gallery-item');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -957,7 +966,6 @@
             });
         }
 
-        /* LIGHTBOX FUNCTIONS */
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
@@ -967,7 +975,6 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        /* WHATSAPP FORM SUBMISSION */
         function sendToWhatsApp(e) {
             e.preventDefault();
             const name = document.getElementById('custName').value;
