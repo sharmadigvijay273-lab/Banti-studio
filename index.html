@@ -618,6 +618,27 @@
             </div>
         </div>
     </section>
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBFzQmi3J4YGqm0zQ5vFkaq4EzXlbuMy5E",
+  authDomain: "banti-studio.firebaseapp.com",
+  projectId: "banti-studio",
+  storageBucket: "banti-studio.firebasestorage.app",
+  messagingSenderId: "748449019319",
+  appId: "1:748449019319:web:abda06a4f2cf9806f7e432",
+  measurementId: "G-9GDYWE5P79"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
     <!-- Counter Stats Section -->
     <div class="stats-grid">
