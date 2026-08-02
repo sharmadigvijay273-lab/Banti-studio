@@ -165,7 +165,7 @@
             font-weight: 300;
         }
 
-        /* Owner Highlight Section (No Photo Layout) */
+        /* Owner Highlight Section */
         .owner-section {
             background: linear-gradient(180deg, #0b0b0e 0%, #15151d 100%);
             padding: 5rem 2rem;
@@ -233,7 +233,7 @@
         /* Section Title Styling */
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .section-header h2 {
@@ -299,6 +299,28 @@
         .gallery-section {
             padding: 6rem 2rem;
             background: #08080a;
+        }
+
+        .upload-container {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+            background: rgba(22, 22, 29, 0.5);
+            border: 2px dashed var(--border-gold);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .upload-label {
+            display: inline-block;
+            cursor: pointer;
+            color: var(--gold-primary);
+            font-weight: 500;
+        }
+
+        .upload-label i {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
         }
 
         .filter-buttons {
@@ -408,7 +430,7 @@
             cursor: pointer;
         }
 
-        /* Direct WhatsApp Booking Section */
+        /* Booking Section */
         .booking-section {
             padding: 6rem 2rem;
             max-width: 1100px;
@@ -587,7 +609,7 @@
         </div>
     </div>
 
-    <!-- Owner / Founder Spotlight Section (Clean Text Layout) -->
+    <!-- Owner Spotlight Section -->
     <section id="owner" class="owner-section">
         <div class="owner-card">
             <div class="owner-info">
@@ -634,21 +656,47 @@
         </div>
     </section>
 
-    <!-- Interactive Filterable Gallery -->
+    <!-- Interactive Gallery with Owner-Only Upload Protection -->
     <section id="gallery" class="gallery-section">
         <div class="section-header">
             <h2>Event Gallery</h2>
             <p>REAL SNAPSHOTS FROM BANTI STUDIO EVENTS</p>
         </div>
 
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterGallery('all')">All Work</button>
-            <button class="filter-btn" onclick="filterGallery('wedding')">Weddings</button>
-            <button class="filter-btn" onclick="filterGallery('stage')">Stage Decor</button>
-            <button class="filter-btn" onclick="filterGallery('shoot')">Photography</button>
+        <!-- Owner Only Photo Upload Block -->
+        <div class="upload-container" id="ownerUploadContainer">
+            <!-- Locked State -->
+            <div id="ownerLockScreen">
+                <p style="font-size: 0.9rem; color: var(--gold-primary); margin-bottom: 0.6rem;">
+                    <i class="fa-solid fa-lock"></i> Owner Gallery Management
+                </p>
+                <div style="display: flex; justify-content: center; gap: 0.5rem; max-width: 340px; margin: auto;">
+                    <input type="password" id="ownerPasskey" placeholder="Enter Owner Passkey" style="padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid var(--border-gold); background: #121218; color: #fff; width: 65%; font-size: 0.85rem; outline: none;">
+                    <button type="button" onclick="unlockOwnerUpload()" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Unlock</button>
+                </div>
+                <p id="passkeyError" style="color: #e74c3c; font-size: 0.75rem; margin-top: 0.4rem; display: none;">Incorrect Passkey! Access Denied.</p>
+            </div>
+
+            <!-- Unlocked Upload Panel -->
+            <div id="ownerUploadPanel" style="display: none;">
+                <label for="gallery-file-upload" class="upload-label">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photo to Studio Gallery
+                </label>
+                <input type="file" id="gallery-file-upload" accept="image/*" style="display: none;" onchange="uploadToGallery(event)">
+                <p style="font-size: 0.75rem; color: var(--gold-light); margin-top: 0.4rem;">
+                    <i class="fa-solid fa-user-shield"></i> Owner Authenticated (Dinesh Kumar Sharma)
+                </p>
+            </div>
         </div>
 
-        <div class="gallery-grid">
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterGallery('all', event)">All Work</button>
+            <button class="filter-btn" onclick="filterGallery('wedding', event)">Weddings</button>
+            <button class="filter-btn" onclick="filterGallery('stage', event)">Stage Decor</button>
+            <button class="filter-btn" onclick="filterGallery('shoot', event)">Photography</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
             <div class="gallery-item wedding" onclick="openLightbox(this.querySelector('img').src)">
                 <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Setup">
                 <div class="gallery-overlay">
@@ -769,6 +817,7 @@
                     <div class="form-group">
                         <input type="date" id="eventDate" required>
                     </div>
+
                     <div class="form-group">
                         <textarea id="eventMsg" rows="3" placeholder="Tell us about your requirements..."></textarea>
                     </div>
@@ -786,12 +835,40 @@
 
     <!-- Scripts -->
     <script>
-        function filterGallery(category) {
+        /* OWNER PASSKEY CONFIGURATION (Change "9235" to any PIN you prefer) */
+        const OWNER_PASSKEY = "9235"; 
+
+        function unlockOwnerUpload() {
+            const enteredPass = document.getElementById('ownerPasskey').value;
+            const errorMsg = document.getElementById('passkeyError');
+            
+            if (enteredPass === OWNER_PASSKEY) {
+                document.getElementById('ownerLockScreen').style.display = 'none';
+                document.getElementById('ownerUploadPanel').style.display = 'block';
+                sessionStorage.setItem('ownerLoggedIn', 'true');
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        /* Keep unlocked if already logged in during current browser session */
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('ownerLoggedIn') === 'true') {
+                const lockScreen = document.getElementById('ownerLockScreen');
+                const uploadPanel = document.getElementById('ownerUploadPanel');
+                if (lockScreen && uploadPanel) {
+                    lockScreen.style.display = 'none';
+                    uploadPanel.style.display = 'block';
+                }
+            }
+        });
+
+        function filterGallery(category, evt) {
             const items = document.querySelectorAll('.gallery-item');
             const buttons = document.querySelectorAll('.filter-btn');
 
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (evt) evt.target.classList.add('active');
 
             items.forEach(item => {
                 if (category === 'all' || item.classList.contains(category)) {
@@ -809,6 +886,35 @@
 
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
+        }
+
+        /* Upload photo directly into Gallery */
+        function uploadToGallery(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const galleryGrid = document.getElementById('galleryGrid');
+                    
+                    const newItem = document.createElement('div');
+                    newItem.className = 'gallery-item shoot';
+                    newItem.onclick = function() { openLightbox(event.target.result); };
+                    
+                    newItem.innerHTML = `
+                        <img src="${event.target.result}" alt="Uploaded Image">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Uploaded Event Photo</h4>
+                                <p>Banti Studio Collection</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    galleryGrid.prepend(newItem);
+                    alert("Photo successfully uploaded and added to the gallery!");
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
         function sendToWhatsApp(e) {
