@@ -3,45 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banti Studio & Events | Luxury Event Management in Jaunpur</title>
+    <title>Banti Studio & Events | Luxury Photography & Event Planning | Jaunpur</title>
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
+            --bg-black: #08080a;
+            --bg-card: rgba(18, 18, 24, 0.7);
             --gold-primary: #d4af37;
             --gold-light: #f3e5ab;
-            --gold-bright: #ffd700;
             --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
             --gold-glow: rgba(212, 175, 55, 0.25);
-            --dark-bg: #070709;
-            --dark-card: rgba(18, 18, 24, 0.75);
-            --dark-card-hover: rgba(26, 26, 35, 0.9);
-            --text-muted: #a0a0ab;
-            --border-gold: rgba(212, 175, 55, 0.25);
+            --text-main: #f0f0f5;
+            --text-muted: #9595a5;
+            --border-gold: rgba(212, 175, 55, 0.2);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: #ffffff;
+            background-color: var(--bg-black);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.04) 0%, transparent 40%);
         }
 
-        h1, h2, h3, .brand-font {
+        h1, h2, h3, h4, .brand-font {
             font-family: 'Cinzel', serif;
             letter-spacing: 1px;
         }
@@ -52,32 +53,31 @@
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+            animation: shine 5s linear infinite;
         }
 
         @keyframes shine {
             to { background-position: 200% center; }
         }
 
-        /* Scrollbar styling */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 4px; }
 
-        /* Header / Navbar */
+        /* Header Navigation */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(7, 7, 9, 0.85);
+            background: rgba(8, 8, 10, 0.85);
             backdrop-filter: blur(15px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-gold);
-            transition: all 0.3s;
         }
 
         .nav-container {
-            max-width: 1250px;
+            max-width: 1300px;
             margin: auto;
             display: flex;
             justify-content: space-between;
@@ -86,8 +86,8 @@
         }
 
         .logo {
-            font-size: 1.7rem;
-            font-weight: 900;
+            font-size: 1.6rem;
+            font-weight: 800;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -96,7 +96,7 @@
 
         .logo i {
             color: var(--gold-primary);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .nav-links {
@@ -106,29 +106,13 @@
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--text-main);
             text-decoration: none;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 500;
             transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--gold-gradient);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         .nav-links a:hover {
@@ -161,7 +145,7 @@
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
         }
 
-        /* Hero Section */
+        /* Hero Banner */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -169,29 +153,18 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 8rem 1.5rem 5rem;
+            padding: 9rem 1.5rem 6rem;
             background: 
-                radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(7,7,9,0.9) 80%),
-                linear-gradient(rgba(7,7,9,0.7), rgba(7,7,9,0.9)),
+                radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(8,8,10,0.92) 80%),
                 url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(to top, var(--dark-bg), transparent);
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             border: 1px solid var(--gold-primary);
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1.6rem;
             border-radius: 30px;
             color: var(--gold-light);
             font-size: 0.8rem;
@@ -199,28 +172,27 @@
             letter-spacing: 2px;
             margin-bottom: 2rem;
             background: rgba(212, 175, 55, 0.08);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.2rem;
             margin-bottom: 1.2rem;
-            line-height: 1.2;
+            line-height: 1.15;
             font-weight: 900;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.8);
         }
 
         .hero p {
             font-size: 1.25rem;
-            color: #d1d1d8;
-            max-width: 780px;
+            color: var(--text-muted);
+            max-width: 800px;
             margin: 0 auto 3rem;
             font-weight: 300;
         }
 
-        /* Stats Counter Grid */
+        /* Stats Grid */
         .stats-grid {
-            max-width: 1150px;
+            max-width: 1200px;
             margin: -4rem auto 6rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -231,18 +203,17 @@
         }
 
         .stat-box {
-            background: var(--dark-card);
+            background: var(--bg-card);
             border: 1px solid var(--border-gold);
             border-radius: 20px;
-            padding: 2rem 1.5rem;
+            padding: 2.2rem 1.5rem;
             text-align: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .stat-box:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             border-color: var(--gold-primary);
             box-shadow: 0 15px 35px var(--gold-glow);
         }
@@ -261,7 +232,7 @@
             margin-top: 0.3rem;
         }
 
-        /* Section Title Styling */
+        /* Section Header */
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -280,21 +251,20 @@
             text-transform: uppercase;
         }
 
-        /* Owner Highlight Section (Centered Text Layout) */
+        /* Founder Spotlight Section (Text Only) */
         .owner-section {
             padding: 6rem 2rem;
-            position: relative;
         }
 
         .owner-card {
-            max-width: 900px;
+            max-width: 950px;
             margin: auto;
-            background: var(--dark-card);
+            background: var(--bg-card);
             border: 1px solid var(--border-gold);
             border-radius: 24px;
             padding: 4rem 3.5rem;
             text-align: center;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             position: relative;
             overflow: hidden;
@@ -311,7 +281,7 @@
         }
 
         .owner-info h3 {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             margin-bottom: 0.3rem;
         }
 
@@ -321,16 +291,16 @@
             letter-spacing: 2px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
 
         .owner-quote {
             font-style: italic;
-            color: #d1d1d8;
-            font-size: 1.1rem;
+            color: var(--text-main);
+            font-size: 1.15rem;
             line-height: 1.8;
-            margin: 0 auto 2rem;
-            max-width: 750px;
+            margin: 0 auto 2.5rem;
+            max-width: 800px;
         }
 
         .owner-features {
@@ -347,15 +317,15 @@
             font-size: 0.85rem;
             color: var(--gold-light);
             background: rgba(212, 175, 55, 0.08);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         /* Services Grid */
         .services-section {
             padding: 6rem 2rem;
-            max-width: 1250px;
+            max-width: 1300px;
             margin: auto;
         }
 
@@ -366,32 +336,18 @@
         }
 
         .service-card {
-            background: var(--dark-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 20px;
             padding: 3rem 2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            border: 1px solid transparent;
-            transition: border-color 0.4s;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            background: var(--dark-card-hover);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 20px var(--gold-glow);
-        }
-
-        .service-card:hover::after {
             border-color: var(--gold-primary);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 20px var(--gold-glow);
         }
 
         .service-icon {
@@ -401,7 +357,7 @@
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
         }
 
@@ -411,10 +367,72 @@
             line-height: 1.7;
         }
 
-        /* Gallery Section */
+        /* Interactive Package Estimator Engine */
+        .estimator-section {
+            padding: 6rem 2rem;
+            background: rgba(5, 5, 8, 0.9);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .estimator-container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 24px;
+            padding: 3.5rem;
+            backdrop-filter: blur(15px);
+        }
+
+        .estimator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .estimator-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .estimator-group select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(10, 10, 14, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .estimate-box {
+            grid-column: 1 / -1;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px dashed var(--gold-primary);
+            border-radius: 16px;
+            padding: 1.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .estimate-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Cinzel', serif;
+            margin: 0.5rem 0;
+        }
+
+        /* Portfolio Gallery */
         .gallery-section {
             padding: 6rem 2rem;
-            background: rgba(5, 5, 7, 0.8);
         }
 
         .filter-buttons {
@@ -447,7 +465,7 @@
         }
 
         .gallery-grid {
-            max-width: 1250px;
+            max-width: 1300px;
             margin: auto;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -458,11 +476,10 @@
             position: relative;
             border-radius: 16px;
             overflow: hidden;
-            height: 300px;
+            height: 310px;
             cursor: pointer;
             border: 1px solid var(--border-gold);
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: transform 0.4s ease;
         }
 
         .gallery-item img {
@@ -479,7 +496,7 @@
         .gallery-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
             display: flex;
             align-items: flex-end;
             padding: 2rem 1.5rem;
@@ -491,23 +508,45 @@
             opacity: 1;
         }
 
-        .gallery-info h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.2rem;
+        /* Production Process Timeline */
+        .process-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: auto;
         }
 
-        .gallery-info p {
-            font-size: 0.85rem;
-            color: var(--gold-light);
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        /* Lightbox Modal */
+        .process-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 2.5rem 1.8rem;
+            position: relative;
+        }
+
+        .process-num {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Cinzel', serif;
+            color: rgba(212, 175, 55, 0.2);
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        /* Lightbox */
         .lightbox-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(12px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -529,22 +568,17 @@
             font-size: 2.8rem;
             color: #fff;
             cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .lightbox-close:hover {
-            color: var(--gold-primary);
         }
 
         /* Booking Section */
         .booking-section {
             padding: 6rem 2rem;
-            max-width: 1150px;
+            max-width: 1200px;
             margin: auto;
         }
 
         .booking-container {
-            background: var(--dark-card);
+            background: var(--bg-card);
             border: 1px solid var(--border-gold);
             border-radius: 24px;
             padding: 4rem 3.5rem;
@@ -552,13 +586,7 @@
             grid-template-columns: 1fr 1.2fr;
             gap: 4rem;
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            position: relative;
             backdrop-filter: blur(15px);
-        }
-
-        .booking-info h3 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
         }
 
         .contact-detail-item {
@@ -602,7 +630,6 @@
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--gold-primary);
             box-shadow: 0 0 15px var(--gold-glow);
-            background: rgba(15, 15, 20, 0.95);
         }
 
         /* Floating Contact Actions */
@@ -625,19 +652,14 @@
             justify-content: center;
             color: #fff;
             font-size: 1.8rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
             text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
 
-        .float-btn:hover {
-            transform: scale(1.12);
-        }
-
+        .float-btn:hover { transform: scale(1.12); }
         .float-wa { background-color: #25d366; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
         .float-call { background-color: #3498db; box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4); }
 
-        /* Footer */
         footer {
             background: #030305;
             text-align: center;
@@ -647,22 +669,19 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
         @media (max-width: 960px) {
-            .booking-container {
+            .booking-container, .estimator-grid {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
-                padding: 3rem 2rem;
             }
             .hero h1 { font-size: 2.8rem; }
             .nav-links { display: none; }
-            .contact-detail-item { justify-content: flex-start; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Header -->
+    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
@@ -671,9 +690,10 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#owner">About Founder</a></li>
+                <li><a href="#about">About Founder</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#estimator">Estimator</a></li>
+                <li><a href="#gallery">Portfolio</a></li>
                 <li><a href="#booking">Book Now</a></li>
             </ul>
             <a href="tel:+919235734716" class="btn-gold"><i class="fa-solid fa-phone"></i> Call Now</a>
@@ -694,13 +714,13 @@
     <section id="home" class="hero">
         <div>
             <div class="hero-badge">
-                <i class="fa-solid fa-crown gold-shimmer"></i> Premium Event Management in Jaunpur
+                <i class="fa-solid fa-crown gold-shimmer"></i> Premium Photography & Events in Jaunpur
             </div>
-            <h1>Crafting Royal Celebrations & <br><span class="gold-shimmer">Timeless Memories</span></h1>
-            <p>From majestic wedding stage setups to high-definition cinematography, we bring your dream celebrations to life with unmatched elegance.</p>
+            <h1>Capturing Royalty & <br><span class="gold-shimmer">Crafting Celebrations</span></h1>
+            <p>High-definition 4K cinematography, drone aerial shoots, and grand thematic event decor executed with perfection.</p>
             <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;">
                 <a href="#booking" class="btn-gold"><i class="fa-solid fa-calendar-check"></i> Book Your Event</a>
-                <a href="#gallery" class="btn-gold" style="background: transparent; border: 1px solid var(--gold-primary); color: #fff;">Explore Portfolio</a>
+                <a href="#estimator" class="btn-gold" style="background: transparent; border: 1px solid var(--gold-primary); color: #fff;">Estimate Cost</a>
             </div>
         </div>
     </section>
@@ -716,27 +736,28 @@
             <div class="stat-label">Years Experience</div>
         </div>
         <div class="stat-box">
-            <div class="stat-number gold-shimmer">100%</div>
-            <div class="stat-label">Client Happiness</div>
+            <div class="stat-number gold-shimmer">4.9★</div>
+            <div class="stat-label">Client Rating</div>
         </div>
         <div class="stat-box">
-            <div class="stat-number gold-shimmer">50+</div>
-            <div class="stat-label">Decor Themes</div>
+            <div class="stat-number gold-shimmer">100%</div>
+            <div class="stat-label">On-Time Execution</div>
         </div>
     </div>
 
-    <!-- Owner / Founder Spotlight Section (Clean Centered Text Layout) -->
-    <section id="owner" class="owner-section">
+    <!-- Founder Spotlight Section (Text Only) -->
+    <section id="about" class="owner-section">
         <div class="owner-card">
             <div class="owner-info">
                 <h3 class="gold-shimmer">DINESH KUMAR SHARMA</h3>
                 <div class="owner-title">Founder & Managing Director | Banti Studio</div>
                 <div class="owner-quote">
-                    "With over a decade of dedication to perfection, our goal at Banti Studio is to make every client's wedding or special occasion truly magnificent, seamless, and completely stress-free."
+                    "With over a decade of mastery in event design and cinematic photography, our mission at Banti Studio is to turn every client's grand vision into an unforgettable experience."
                 </div>
                 <div class="owner-features">
-                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> Personal On-Site Supervision</div>
-                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> Customized Budgeting</div>
+                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> Personal Director Supervision</div>
+                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> Custom Theme Designing</div>
+                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> 4K Ultra-HD Delivery</div>
                 </div>
             </div>
         </div>
@@ -745,38 +766,105 @@
     <!-- Services Section -->
     <section id="services" class="services-section">
         <div class="section-header">
-            <h2 class="gold-shimmer">Our Luxury Services</h2>
-            <p>End-To-End Event Planning & Studio Solutions in Jaunpur</p>
+            <h2 class="gold-shimmer">Our Core Expertise</h2>
+            <p>Cinematography & Luxury Event Management</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
                 <i class="fa-solid fa-gem service-icon gold-shimmer"></i>
-                <h3>Grand Wedding Planning</h3>
-                <p>Complete conceptual execution including Baraat welcome themes, Varmala setups, and royal Mandap decor.</p>
+                <h3>Grand Wedding Management</h3>
+                <p>Complete management including Baraat entries, Varmala themes, lighting production, and royal Mandap setups.</p>
             </div>
             <div class="service-card">
-                <i class="fa-solid fa-film service-icon gold-shimmer"></i>
-                <h3>Cinematography & Shoots</h3>
-                <p>Ultra-HD cinematic wedding films, drone aerial coverage, traditional photography, and pre-wedding concept shoots.</p>
+                <i class="fa-solid fa-video service-icon gold-shimmer"></i>
+                <h3>4K Cinematic Photography</h3>
+                <p>High-end cinematic wedding films, drone aerial coverage, traditional photography, and studio pre-wedding shoots.</p>
             </div>
             <div class="service-card">
                 <i class="fa-solid fa-spa service-icon gold-shimmer"></i>
-                <h3>Stage & Floral Lighting</h3>
-                <p>Trending fresh flower entrances, LED lighting tunnels, interactive entry pathways, and thematic stage backdrops.</p>
+                <h3>Thematic Stage Decor</h3>
+                <p>Fresh flower backdrops, LED entry tunnels, custom lighting, and designer stage arrangements tailored to your budget.</p>
             </div>
             <div class="service-card">
-                <i class="fa-solid fa-glass-water-droplet service-icon gold-shimmer"></i>
+                <i class="fa-solid fa-champagne-glasses service-icon gold-shimmer"></i>
                 <h3>Haldi, Mehendi & Parties</h3>
-                <p>Vibrant yellow and green thematic decor for Haldi/Mehendi functions, birthdays, and anniversary celebrations.</p>
+                <p>Specialized yellow/green decor for Haldi and Mehendi, sound setups, and birthday celebration themes.</p>
             </div>
         </div>
     </section>
 
-    <!-- Filterable Portfolio Gallery -->
+    <!-- Interactive Event Package Estimator -->
+    <section id="estimator" class="estimator-section">
+        <div class="section-header">
+            <h2 class="gold-shimmer">Instant Event Cost Estimator</h2>
+            <p>Calculate An Estimated Budget For Your Big Day</p>
+        </div>
+        <div class="estimator-container">
+            <div class="estimator-grid">
+                <div class="estimator-group">
+                    <label><i class="fa-solid fa-glass-water"></i> Event Type</label>
+                    <select id="estType" onchange="calculateEstimate()">
+                        <option value="40000">Grand Wedding (Full Setup)</option>
+                        <option value="20000">Haldi / Mehendi Function</option>
+                        <option value="15000">Pre-Wedding Shoot</option>
+                        <option value="12000">Birthday / Private Party</option>
+                    </select>
+                </div>
+                <div class="estimator-group">
+                    <label><i class="fa-solid fa-camera"></i> Photography Coverage</label>
+                    <select id="estPhoto" onchange="calculateEstimate()">
+                        <option value="25000">4K Cinematic + Drone + Photo</option>
+                        <option value="15000">Traditional Photo + Video</option>
+                        <option value="8000">Photography Only</option>
+                        <option value="0">No Photography Needed</option>
+                    </select>
+                </div>
+                <div class="estimate-box">
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">Estimated Event Budget</span>
+                    <div class="estimate-price gold-shimmer" id="estimateOutput">₹65,000*</div>
+                    <button class="btn-gold" style="margin-top: 1rem;" onclick="bookEstimate()">
+                        <i class="fa-brands fa-whatsapp"></i> Inquire This Estimate On WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Production Workflow Process -->
+    <section class="process-section">
+        <div class="section-header">
+            <h2 class="gold-shimmer">Our Execution Process</h2>
+            <p>How We Bring Magic To Your Event</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <span class="process-num">01</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">Initial Consultation</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">We sit down with you to understand your budget, theme preference, and dates.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-num">02</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">Concept Design</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Our team designs stage layouts, lighting maps, and photography mood boards.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-num">03</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">On-Site Execution</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Dinesh Kumar Sharma personally supervises stage setup, floral decor, and shooting crew.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-num">04</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">Delivery</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Receive your high-definition color-graded cinematic video album and photos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
     <section id="gallery" class="gallery-section">
         <div class="section-header">
-            <h2 class="gold-shimmer">Event Gallery</h2>
-            <p>Real Moments Captured by Banti Studio</p>
+            <h2 class="gold-shimmer">Portfolio Gallery</h2>
+            <p>Real Captures from Banti Studio</p>
         </div>
 
         <div class="filter-buttons">
@@ -788,9 +876,9 @@
 
         <div class="gallery-grid">
             <div class="gallery-item wedding" onclick="openLightbox(this.querySelector('img').src)">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Setup">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Stage">
                 <div class="gallery-overlay">
-                    <div class="gallery-info">
+                    <div>
                         <h4 class="gold-shimmer">Royal Varmala Stage</h4>
                         <p>Jaunpur Grand Setup</p>
                     </div>
@@ -798,10 +886,10 @@
             </div>
 
             <div class="gallery-item stage" onclick="openLightbox(this.querySelector('img').src)">
-                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" alt="Floral Decor">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" alt="Floral Stage">
                 <div class="gallery-overlay">
-                    <div class="gallery-info">
-                        <h4 class="gold-shimmer">Fresh Floral Stage</h4>
+                    <div>
+                        <h4 class="gold-shimmer">Fresh Floral Backdrop</h4>
                         <p>Luxury Theme</p>
                     </div>
                 </div>
@@ -810,7 +898,7 @@
             <div class="gallery-item shoot" onclick="openLightbox(this.querySelector('img').src)">
                 <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Pre-Wedding Shoot">
                 <div class="gallery-overlay">
-                    <div class="gallery-info">
+                    <div>
                         <h4 class="gold-shimmer">Pre-Wedding Shoot</h4>
                         <p>Outdoor Location</p>
                     </div>
@@ -820,7 +908,7 @@
             <div class="gallery-item wedding" onclick="openLightbox(this.querySelector('img').src)">
                 <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" alt="Mandap Setup">
                 <div class="gallery-overlay">
-                    <div class="gallery-info">
+                    <div>
                         <h4 class="gold-shimmer">Traditional Mandap</h4>
                         <p>Night Illumination</p>
                     </div>
@@ -828,11 +916,11 @@
             </div>
 
             <div class="gallery-item stage" onclick="openLightbox(this.querySelector('img').src)">
-                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="Party Setup">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="Theme Entry">
                 <div class="gallery-overlay">
-                    <div class="gallery-info">
+                    <div>
                         <h4 class="gold-shimmer">Theme Entry Gate</h4>
-                        <p>LED Concept</p>
+                        <p>LED & Floral Concept</p>
                     </div>
                 </div>
             </div>
@@ -840,7 +928,7 @@
             <div class="gallery-item shoot" onclick="openLightbox(this.querySelector('img').src)">
                 <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80" alt="Bridal Shoot">
                 <div class="gallery-overlay">
-                    <div class="gallery-info">
+                    <div>
                         <h4 class="gold-shimmer">Bridal Portfolio</h4>
                         <p>Studio Portrait</p>
                     </div>
@@ -855,12 +943,12 @@
         <img id="lightbox-img" src="" alt="Enlarged view">
     </div>
 
-    <!-- Booking & Contact Section -->
+    <!-- Direct Booking Section -->
     <section id="booking" class="booking-section">
         <div class="booking-container">
             <div class="booking-info">
                 <h3 class="gold-shimmer">Reserve Your Date</h3>
-                <p style="color: var(--text-muted);">Get in touch directly with Mr. Dinesh Kumar Sharma for custom event packages and availability.</p>
+                <p style="color: var(--text-muted);">Contact Mr. Dinesh Kumar Sharma directly for dates and custom package discussions.</p>
                 
                 <div class="contact-detail-item">
                     <i class="fa-solid fa-user-tie"></i>
@@ -924,9 +1012,9 @@
         <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #555;">Owned and Managed by <strong>Dinesh Kumar Sharma</strong> | Jaunpur, UP | +91 9235734716</p>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Application JavaScript Engine -->
     <script>
-        // Gallery Filter Function
+        // Gallery Filter Handler
         function filterGallery(category, evt) {
             const items = document.querySelectorAll('.gallery-item');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -943,7 +1031,7 @@
             });
         }
 
-        // Lightbox Functions
+        // Lightbox Handler
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
@@ -953,7 +1041,1094 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // Direct WhatsApp Booking Handler
+        // Event Cost Estimator Engine
+        function calculateEstimate() {
+            const typeVal = parseInt(document.getElementById('estType').value);
+            const photoVal = parseInt(document.getElementById('estPhoto').value);
+            const total = typeVal + photoVal;
+            document.getElementById('estimateOutput').innerText = '₹' + total.toLocaleString('en-IN') + '*';
+        }
+
+        function bookEstimate() {
+            const total = document.getElementById('estimateOutput').innerText;
+            const text = `Hello *Banti Studio*!%0A%0AI used the website Estimator and got a budget quote of *${total}*. I would like to discuss dates!`;
+            window.open(`https://wa.me/919235734716?text=${text}`, '_blank');
+        }
+
+        // WhatsApp Form Integration
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const type = document.getElementById('eventType').value;
+            const date = document.getElementById('eventDate').value;
+            const msg = document.getElementById('eventMsg').value;
+
+            const text = `Hello *Banti Studio*!%0A%0AI would like to inquire about booking an event:%0A%0A👤 *Name:* ${encodeURIComponent(name)}%0A📞 *Phone:* ${encodeURIComponent(phone)}%0A🎉 *Event Type:* ${encodeURIComponent(type)}%0A📅 *Event Date:* ${encodeURIComponent(date)}%0A📝 *Details:* ${encodeURIComponent(msg)}`;
+
+            window.open(`https://wa.me/919235734716?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banti Studio & Events | Luxury Photography & Event Planning | Jaunpur</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-black: #08080a;
+            --bg-card: rgba(18, 18, 24, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --gold-glow: rgba(212, 175, 55, 0.25);
+            --text-main: #f0f0f5;
+            --text-muted: #9595a5;
+            --border-gold: rgba(212, 175, 55, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.04) 0%, transparent 40%);
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        /* Gold Shimmer Text Animation */
+        .gold-shimmer {
+            background: var(--gold-gradient);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 4px; }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8, 8, 10, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo i {
+            color: var(--gold-primary);
+            font-size: 1.4rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            background-size: 200% auto;
+            color: #000;
+            padding: 0.75rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        .btn-gold:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 9rem 1.5rem 6rem;
+            background: 
+                radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(8,8,10,0.92) 80%),
+                url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            border: 1px solid var(--gold-primary);
+            padding: 0.5rem 1.6rem;
+            border-radius: 30px;
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            background: rgba(212, 175, 55, 0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.15;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            max-width: 1200px;
+            margin: -4rem auto 6rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 2.2rem 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 35px var(--gold-glow);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            font-family: 'Cinzel', serif;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Founder Spotlight Section (Text Only) */
+        .owner-section {
+            padding: 6rem 2rem;
+        }
+
+        .owner-card {
+            max-width: 950px;
+            margin: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 24px;
+            padding: 4rem 3.5rem;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .owner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold-gradient);
+        }
+
+        .owner-info h3 {
+            font-size: 2.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .owner-title {
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .owner-quote {
+            font-style: italic;
+            color: var(--text-main);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin: 0 auto 2.5rem;
+            max-width: 800px;
+        }
+
+        .owner-features {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .owner-badge-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.08);
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 6rem 2rem;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 20px var(--gold-glow);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.8rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Interactive Package Estimator Engine */
+        .estimator-section {
+            padding: 6rem 2rem;
+            background: rgba(5, 5, 8, 0.9);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .estimator-container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 24px;
+            padding: 3.5rem;
+            backdrop-filter: blur(15px);
+        }
+
+        .estimator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .estimator-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .estimator-group select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(10, 10, 14, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .estimate-box {
+            grid-column: 1 / -1;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px dashed var(--gold-primary);
+            border-radius: 16px;
+            padding: 1.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .estimate-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Cinzel', serif;
+            margin: 0.5rem 0;
+        }
+
+        /* Portfolio Gallery */
+        .gallery-section {
+            padding: 6rem 2rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: #fff;
+            padding: 0.6rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 700;
+            border-color: transparent;
+            box-shadow: 0 5px 15px var(--gold-glow);
+        }
+
+        .gallery-grid {
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 310px;
+            cursor: pointer;
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Production Process Timeline */
+        .process-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 2.5rem 1.8rem;
+            position: relative;
+        }
+
+        .process-num {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Cinzel', serif;
+            color: rgba(212, 175, 55, 0.2);
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        /* Lightbox */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .lightbox-modal img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 2.8rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .booking-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 24px;
+            padding: 4rem 3.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            backdrop-filter: blur(15px);
+        }
+
+        .contact-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+
+        .contact-detail-item i {
+            font-size: 1.3rem;
+            color: #000;
+            width: 45px;
+            height: 45px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        .booking-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.4rem;
+            background: rgba(10, 10, 14, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        /* Floating Contact Actions */
+        .floating-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .float-btn:hover { transform: scale(1.12); }
+        .float-wa { background-color: #25d366; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
+        .float-call { background-color: #3498db; box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4); }
+
+        footer {
+            background: #030305;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 960px) {
+            .booking-container, .estimator-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-camera-retro"></i>
+                <span class="gold-shimmer">BANTI STUDIO</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Founder</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#estimator">Estimator</a></li>
+                <li><a href="#gallery">Portfolio</a></li>
+                <li><a href="#booking">Book Now</a></li>
+            </ul>
+            <a href="tel:+919235734716" class="btn-gold"><i class="fa-solid fa-phone"></i> Call Now</a>
+        </div>
+    </header>
+
+    <!-- Floating Quick Actions -->
+    <div class="floating-actions">
+        <a href="https://wa.me/919235734716?text=Hello%20Banti%20Studio,%20I%20want%20to%20inquire%20about%20event%20booking." class="float-btn float-wa" target="_blank" title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="tel:+919235734716" class="float-btn float-call" title="Call Us Directly">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+    </div>
+
+    <!-- Hero Banner -->
+    <section id="home" class="hero">
+        <div>
+            <div class="hero-badge">
+                <i class="fa-solid fa-crown gold-shimmer"></i> Premium Photography & Events in Jaunpur
+            </div>
+            <h1>Capturing Royalty & <br><span class="gold-shimmer">Crafting Celebrations</span></h1>
+            <p>High-definition 4K cinematography, drone aerial shoots, and grand thematic event decor executed with perfection.</p>
+            <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#booking" class="btn-gold"><i class="fa-solid fa-calendar-check"></i> Book Your Event</a>
+                <a href="#estimator" class="btn-gold" style="background: transparent; border: 1px solid var(--gold-primary); color: #fff;">Estimate Cost</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Counter Stats -->
+    <div class="stats-grid">
+        <div class="stat-box">
+            <div class="stat-number gold-shimmer">500+</div>
+            <div class="stat-label">Successful Events</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number gold-shimmer">12+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number gold-shimmer">4.9★</div>
+            <div class="stat-label">Client Rating</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number gold-shimmer">100%</div>
+            <div class="stat-label">On-Time Execution</div>
+        </div>
+    </div>
+
+    <!-- Founder Spotlight Section (Text Only) -->
+    <section id="about" class="owner-section">
+        <div class="owner-card">
+            <div class="owner-info">
+                <h3 class="gold-shimmer">DINESH KUMAR SHARMA</h3>
+                <div class="owner-title">Founder & Managing Director | Banti Studio</div>
+                <div class="owner-quote">
+                    "With over a decade of mastery in event design and cinematic photography, our mission at Banti Studio is to turn every client's grand vision into an unforgettable experience."
+                </div>
+                <div class="owner-features">
+                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> Personal Director Supervision</div>
+                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> Custom Theme Designing</div>
+                    <div class="owner-badge-item"><i class="fa-solid fa-circle-check"></i> 4K Ultra-HD Delivery</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="section-header">
+            <h2 class="gold-shimmer">Our Core Expertise</h2>
+            <p>Cinematography & Luxury Event Management</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-gem service-icon gold-shimmer"></i>
+                <h3>Grand Wedding Management</h3>
+                <p>Complete management including Baraat entries, Varmala themes, lighting production, and royal Mandap setups.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-video service-icon gold-shimmer"></i>
+                <h3>4K Cinematic Photography</h3>
+                <p>High-end cinematic wedding films, drone aerial coverage, traditional photography, and studio pre-wedding shoots.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-spa service-icon gold-shimmer"></i>
+                <h3>Thematic Stage Decor</h3>
+                <p>Fresh flower backdrops, LED entry tunnels, custom lighting, and designer stage arrangements tailored to your budget.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-champagne-glasses service-icon gold-shimmer"></i>
+                <h3>Haldi, Mehendi & Parties</h3>
+                <p>Specialized yellow/green decor for Haldi and Mehendi, sound setups, and birthday celebration themes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Event Package Estimator -->
+    <section id="estimator" class="estimator-section">
+        <div class="section-header">
+            <h2 class="gold-shimmer">Instant Event Cost Estimator</h2>
+            <p>Calculate An Estimated Budget For Your Big Day</p>
+        </div>
+        <div class="estimator-container">
+            <div class="estimator-grid">
+                <div class="estimator-group">
+                    <label><i class="fa-solid fa-glass-water"></i> Event Type</label>
+                    <select id="estType" onchange="calculateEstimate()">
+                        <option value="40000">Grand Wedding (Full Setup)</option>
+                        <option value="20000">Haldi / Mehendi Function</option>
+                        <option value="15000">Pre-Wedding Shoot</option>
+                        <option value="12000">Birthday / Private Party</option>
+                    </select>
+                </div>
+                <div class="estimator-group">
+                    <label><i class="fa-solid fa-camera"></i> Photography Coverage</label>
+                    <select id="estPhoto" onchange="calculateEstimate()">
+                        <option value="25000">4K Cinematic + Drone + Photo</option>
+                        <option value="15000">Traditional Photo + Video</option>
+                        <option value="8000">Photography Only</option>
+                        <option value="0">No Photography Needed</option>
+                    </select>
+                </div>
+                <div class="estimate-box">
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">Estimated Event Budget</span>
+                    <div class="estimate-price gold-shimmer" id="estimateOutput">₹65,000*</div>
+                    <button class="btn-gold" style="margin-top: 1rem;" onclick="bookEstimate()">
+                        <i class="fa-brands fa-whatsapp"></i> Inquire This Estimate On WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Production Workflow Process -->
+    <section class="process-section">
+        <div class="section-header">
+            <h2 class="gold-shimmer">Our Execution Process</h2>
+            <p>How We Bring Magic To Your Event</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <span class="process-num">01</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">Initial Consultation</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">We sit down with you to understand your budget, theme preference, and dates.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-num">02</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">Concept Design</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Our team designs stage layouts, lighting maps, and photography mood boards.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-num">03</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">On-Site Execution</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Dinesh Kumar Sharma personally supervises stage setup, floral decor, and shooting crew.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-num">04</span>
+                <h4 style="color: var(--gold-light); margin-bottom: 0.5rem;">Delivery</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Receive your high-definition color-graded cinematic video album and photos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-header">
+            <h2 class="gold-shimmer">Portfolio Gallery</h2>
+            <p>Real Captures from Banti Studio</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterGallery('all', event)">All Works</button>
+            <button class="filter-btn" onclick="filterGallery('wedding', event)">Weddings</button>
+            <button class="filter-btn" onclick="filterGallery('stage', event)">Stage Decor</button>
+            <button class="filter-btn" onclick="filterGallery('shoot', event)">Photography</button>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item wedding" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Stage">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4 class="gold-shimmer">Royal Varmala Stage</h4>
+                        <p>Jaunpur Grand Setup</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item stage" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" alt="Floral Stage">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4 class="gold-shimmer">Fresh Floral Backdrop</h4>
+                        <p>Luxury Theme</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item shoot" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Pre-Wedding Shoot">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4 class="gold-shimmer">Pre-Wedding Shoot</h4>
+                        <p>Outdoor Location</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item wedding" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" alt="Mandap Setup">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4 class="gold-shimmer">Traditional Mandap</h4>
+                        <p>Night Illumination</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item stage" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="Theme Entry">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4 class="gold-shimmer">Theme Entry Gate</h4>
+                        <p>LED & Floral Concept</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item shoot" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80" alt="Bridal Shoot">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4 class="gold-shimmer">Bridal Portfolio</h4>
+                        <p>Studio Portrait</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged view">
+    </div>
+
+    <!-- Direct Booking Section -->
+    <section id="booking" class="booking-section">
+        <div class="booking-container">
+            <div class="booking-info">
+                <h3 class="gold-shimmer">Reserve Your Date</h3>
+                <p style="color: var(--text-muted);">Contact Mr. Dinesh Kumar Sharma directly for dates and custom package discussions.</p>
+                
+                <div class="contact-detail-item">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <div>
+                        <strong style="display:block; color:#fff;">Founder & Director</strong>
+                        <span style="color: var(--text-muted);">Dinesh Kumar Sharma</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong style="display:block; color:#fff;">Phone & WhatsApp</strong>
+                        <a href="tel:+919235734716" style="color: var(--gold-light); text-decoration:none;">+91 9235734716</a>
+                    </div>
+                </div>
+
+                <div class="contact-detail-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong style="display:block; color:#fff;">Location</strong>
+                        <span style="color: var(--text-muted);">Jaunpur, Uttar Pradesh, India</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-form">
+                <form onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <input type="text" id="custName" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="custPhone" placeholder="Mobile Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="eventType" required>
+                            <option value="" disabled selected>Select Event Type</option>
+                            <option value="Wedding Planning & Stage Decor">Wedding Planning & Stage Decor</option>
+                            <option value="Haldi / Mehendi Function">Haldi / Mehendi Function</option>
+                            <option value="Pre-Wedding & Studio Shoot">Pre-Wedding / Studio Shoot</option>
+                            <option value="Birthday or Private Celebration">Birthday / Private Celebration</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="eventMsg" rows="3" placeholder="Describe your event requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-gold" style="width: 100%; justify-content: center;">
+                        <i class="fa-brands fa-whatsapp"></i> Send Direct WhatsApp Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <strong>Banti Studio & Event Management</strong>. All Rights Reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #555;">Owned and Managed by <strong>Dinesh Kumar Sharma</strong> | Jaunpur, UP | +91 9235734716</p>
+    </footer>
+
+    <!-- Application JavaScript Engine -->
+    <script>
+        // Gallery Filter Handler
+        function filterGallery(category, evt) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (evt) evt.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox Handler
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Event Cost Estimator Engine
+        function calculateEstimate() {
+            const typeVal = parseInt(document.getElementById('estType').value);
+            const photoVal = parseInt(document.getElementById('estPhoto').value);
+            const total = typeVal + photoVal;
+            document.getElementById('estimateOutput').innerText = '₹' + total.toLocaleString('en-IN') + '*';
+        }
+
+        function bookEstimate() {
+            const total = document.getElementById('estimateOutput').innerText;
+            const text = `Hello *Banti Studio*!%0A%0AI used the website Estimator and got a budget quote of *${total}*. I would like to discuss dates!`;
+            window.open(`https://wa.me/919235734716?text=${text}`, '_blank');
+        }
+
+        // WhatsApp Form Integration
         function sendToWhatsApp(e) {
             e.preventDefault();
             const name = document.getElementById('custName').value;
