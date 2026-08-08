@@ -251,7 +251,7 @@
             text-transform: uppercase;
         }
 
-        /* Founder Spotlight Section (Text Only) */
+        /* Founder Spotlight Section */
         .owner-section {
             padding: 6rem 2rem;
         }
@@ -430,9 +430,127 @@
             margin: 0.5rem 0;
         }
 
+        /* Restricted Owner Upload Portal */
+        .upload-hub-section {
+            padding: 4rem 2rem 2rem;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .upload-card {
+            background: var(--bg-card);
+            border: 2px dashed var(--border-gold);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        .upload-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 40px var(--gold-glow);
+        }
+
+        .upload-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .owner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pin-input-group {
+            max-width: 350px;
+            margin: 1.5rem auto 1rem;
+        }
+
+        .pin-input-group input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(10, 10, 14, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 12px;
+            color: #fff;
+            text-align: center;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .pin-input-group input:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        .file-input-wrapper {
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .file-label-btn {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .file-label-btn:hover {
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 700;
+        }
+
+        #previewBox {
+            display: none;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        #previewImg {
+            max-width: 220px;
+            max-height: 180px;
+            border-radius: 12px;
+            border: 2px solid var(--gold-primary);
+            object-fit: cover;
+        }
+
+        #uploadStatus {
+            margin-top: 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
         /* Portfolio Gallery */
         .gallery-section {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem 6rem;
         }
 
         .filter-buttons {
@@ -480,6 +598,12 @@
             cursor: pointer;
             border: 1px solid var(--border-gold);
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .gallery-item img {
@@ -506,6 +630,19 @@
 
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
+        }
+
+        .owner-tag {
+            background: var(--gold-gradient);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 0.4rem;
         }
 
         /* Production Process Timeline */
@@ -693,6 +830,7 @@
                 <li><a href="#about">About Founder</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#estimator">Estimator</a></li>
+                <li><a href="#upload-hub">Owner Upload</a></li>
                 <li><a href="#gallery">Portfolio</a></li>
                 <li><a href="#booking">Book Now</a></li>
             </ul>
@@ -830,6 +968,46 @@
         </div>
     </section>
 
+    <!-- Restricted Owner Photo Upload Portal -->
+    <section id="upload-hub" class="upload-hub-section">
+        <div class="section-header" style="margin-bottom: 2rem;">
+            <div class="owner-badge"><i class="fa-solid fa-lock"></i> Owner Exclusive</div>
+            <h2 class="gold-shimmer">Owner Photo Upload Portal</h2>
+            <p>Authorized Admin Access • Managed By Dinesh Kumar Sharma</p>
+        </div>
+
+        <div class="upload-card">
+            <i class="fa-solid fa-user-gear upload-icon gold-shimmer"></i>
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Upload To Live Gallery</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Enter owner security PIN to upload photos directly from mobile/laptop via Cloudinary API.</p>
+
+            <form id="cloudinaryUploadForm" onsubmit="handleCloudinaryUpload(event)">
+                <div class="pin-input-group">
+                    <input type="password" id="ownerPinInput" placeholder="Enter Owner Security PIN (Default: 1234)" required>
+                </div>
+
+                <div class="file-input-wrapper">
+                    <input type="file" id="photoFileInput" accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
+                    
+                    <label for="photoFileInput" class="file-label-btn">
+                        <i class="fa-solid fa-image"></i>
+                        <span id="fileSelectText">Choose Photo From Device</span>
+                    </label>
+
+                    <div id="previewBox">
+                        <img id="previewImg" src="" alt="Selected Preview">
+                    </div>
+                </div>
+
+                <button type="submit" id="submitUploadBtn" class="btn-gold" style="display: none; margin: 0 auto;">
+                    <i class="fa-solid fa-upload"></i> Authorize & Publish Photo
+                </button>
+            </form>
+
+            <div id="uploadStatus"></div>
+        </div>
+    </section>
+
     <!-- Production Workflow Process -->
     <section class="process-section">
         <div class="section-header">
@@ -864,17 +1042,20 @@
     <section id="gallery" class="gallery-section">
         <div class="section-header">
             <h2 class="gold-shimmer">Portfolio Gallery</h2>
-            <p>Real Captures from Banti Studio</p>
+            <p>Real Captures & Official Uploads from Banti Studio</p>
         </div>
 
         <div class="filter-buttons">
             <button class="filter-btn active" onclick="filterGallery('all', event)">All Works</button>
+            <button class="filter-btn" onclick="filterGallery('owner', event)">Owner Additions</button>
             <button class="filter-btn" onclick="filterGallery('wedding', event)">Weddings</button>
             <button class="filter-btn" onclick="filterGallery('stage', event)">Stage Decor</button>
             <button class="filter-btn" onclick="filterGallery('shoot', event)">Photography</button>
         </div>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Dynamic Owner Cloudinary Uploads prepend here -->
+
             <div class="gallery-item wedding" onclick="openLightbox(this.querySelector('img').src)">
                 <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Stage">
                 <div class="gallery-overlay">
@@ -1014,6 +1195,137 @@
 
     <!-- Application JavaScript Engine -->
     <script>
+        // Owner Security Settings
+        // CHANGE THIS PIN TO YOUR PREFERRED SECURITY CODE
+        const OWNER_SECRET_PIN = "1234";
+
+        // Cloudinary API Configuration
+        const CLOUDINARY_CLOUD_NAME = 'demo'; 
+        const CLOUDINARY_UPLOAD_PRESET = 'docs_upload_example_us_preset';
+
+        // Load saved live photos from localStorage on startup
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedPhotos = JSON.parse(localStorage.getItem('banti_owner_photos') || '[]');
+            savedPhotos.forEach(photoUrl => {
+                appendPhotoToGallery(photoUrl, false);
+            });
+        });
+
+        // Handle File Selection & Preview
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            const selectText = document.getElementById('fileSelectText');
+            const previewBox = document.getElementById('previewBox');
+            const previewImg = document.getElementById('previewImg');
+            const submitBtn = document.getElementById('submitUploadBtn');
+            const status = document.getElementById('uploadStatus');
+
+            status.innerHTML = '';
+
+            if (file) {
+                selectText.innerText = file.name;
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    previewImg.src = evt.target.result;
+                    previewBox.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+                submitBtn.style.display = 'inline-flex';
+            }
+        }
+
+        // Handle Direct Upload with Owner Authorization
+        async function handleCloudinaryUpload(e) {
+            e.preventDefault();
+            const pinInput = document.getElementById('ownerPinInput').value;
+            const fileInput = document.getElementById('photoFileInput');
+            const status = document.getElementById('uploadStatus');
+            const submitBtn = document.getElementById('submitUploadBtn');
+
+            // Verify Owner PIN
+            if (pinInput !== OWNER_SECRET_PIN) {
+                status.style.color = '#ff4d4d';
+                status.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Access Denied: Incorrect Owner Security PIN!';
+                return;
+            }
+
+            if (!fileInput.files || !fileInput.files[0]) {
+                status.style.color = '#ff4d4d';
+                status.innerText = 'Please select a photo first!';
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+            status.style.color = 'var(--gold-light)';
+            status.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating & uploading photo to gallery...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.secure_url) {
+                    status.style.color = '#25d366';
+                    status.innerHTML = '<i class="fa-solid fa-circle-check"></i> Owner Verification Successful! Photo published to live gallery.';
+
+                    // Append photo live into gallery DOM
+                    appendPhotoToGallery(data.secure_url, true);
+
+                    // Reset form fields
+                    document.getElementById('cloudinaryUploadForm').reset();
+                    document.getElementById('fileSelectText').innerText = 'Choose Photo From Device';
+                    document.getElementById('previewBox').style.display = 'none';
+                    submitBtn.style.display = 'none';
+                } else {
+                    throw new Error(data.error?.message || 'Cloudinary upload failed.');
+                }
+            } catch (err) {
+                console.error('Upload Error:', err);
+                status.style.color = '#ff4d4d';
+                status.innerText = 'Upload Error: ' + err.message;
+            } finally {
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Add Uploaded Photo to Gallery DOM
+        function appendPhotoToGallery(imgUrl, saveToStorage = true) {
+            const galleryGrid = document.getElementById('galleryGrid');
+
+            const item = document.createElement('div');
+            item.className = 'gallery-item owner';
+            item.onclick = function() { openLightbox(imgUrl); };
+
+            item.innerHTML = `
+                <img src="${imgUrl}" alt="Official Owner Upload">
+                <div class="gallery-overlay">
+                    <div>
+                        <span class="owner-tag"><i class="fa-solid fa-user-check"></i> Official Owner Capture</span>
+                        <h4 class="gold-shimmer">Dinesh Kumar Sharma</h4>
+                        <p>Studio Portfolio</p>
+                    </div>
+                </div>
+            `;
+
+            // Insert as first item in gallery
+            galleryGrid.insertBefore(item, galleryGrid.firstChild);
+
+            // Persist to localStorage
+            if (saveToStorage) {
+                const saved = JSON.parse(localStorage.getItem('banti_owner_photos') || '[]');
+                saved.unshift(imgUrl);
+                localStorage.setItem('banti_owner_photos', JSON.stringify(saved));
+            }
+        }
+
         // Gallery Filter Handler
         function filterGallery(category, evt) {
             const items = document.querySelectorAll('.gallery-item');
