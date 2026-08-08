@@ -22,6 +22,7 @@
             --text-main: #f0f0f5;
             --text-muted: #9595a5;
             --border-gold: rgba(212, 175, 55, 0.2);
+            --danger-red: #ff4d4d;
         }
 
         * {
@@ -645,6 +646,36 @@
             margin-bottom: 0.4rem;
         }
 
+        /* Owner Delete Button Style */
+        .delete-photo-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(239, 68, 68, 0.85);
+            color: #fff;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+
+        .gallery-item:hover .delete-photo-btn {
+            opacity: 1;
+        }
+
+        .delete-photo-btn:hover {
+            background: #dc2626;
+            transform: scale(1.12);
+        }
+
         /* Production Process Timeline */
         .process-section {
             padding: 6rem 2rem;
@@ -983,7 +1014,7 @@
 
             <form id="cloudinaryUploadForm" onsubmit="handleCloudinaryUpload(event)">
                 <div class="pin-input-group">
-                    <input type="password" id="ownerPinInput" placeholder="Enter Owner Security PIN (Default: 1234)" required>
+                    <input type="password" id="ownerPinInput" placeholder="Enter Owner Security PIN" required>
                 </div>
 
                 <div class="file-input-wrapper">
@@ -1195,8 +1226,8 @@
 
     <!-- Application JavaScript Engine -->
     <script>
-        // Owner Security Settings (Default PIN: 1234)
-        const OWNER_SECRET_PIN = "1234";
+        // Owner Security Settings (Updated PIN: 1972)
+        const OWNER_SECRET_PIN = "1972";
 
         // Cloudinary API Configuration
         const CLOUDINARY_CLOUD_NAME = 'Xlarw1qj'; 
@@ -1210,6 +1241,7 @@
 
         // Fetch live uploaded photos directly from Cloudinary REST API
         async function fetchLiveCloudinaryPhotos() {
+            const deleted = JSON.parse(localStorage.getItem('banti_deleted_photos') || '[]');
             try {
                 const response = await fetch(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/list/${GALLERY_TAG}.json`);
                 if (response.ok) {
@@ -1217,7 +1249,9 @@
                     if (data.resources && data.resources.length > 0) {
                         data.resources.forEach(img => {
                             const imgUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/v${img.version}/${img.public_id}.${img.format}`;
-                            appendPhotoToGallery(imgUrl);
+                            if (!deleted.includes(imgUrl)) {
+                                appendPhotoToGallery(imgUrl);
+                            }
                         });
                     }
                 }
@@ -1324,6 +1358,9 @@
             item.onclick = function() { openLightbox(imgUrl); };
 
             item.innerHTML = `
+                <button class="delete-photo-btn" onclick="deletePhoto(event, '${imgUrl}', this.closest('.gallery-item'))" title="Delete Photo (Owner Only)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
                 <img src="${imgUrl}" alt="Official Owner Upload">
                 <div class="gallery-overlay">
                     <div>
@@ -1336,6 +1373,28 @@
 
             // Insert as first item in gallery
             galleryGrid.insertBefore(item, galleryGrid.firstChild);
+        }
+
+        // Owner Delete Action Handler
+        function deletePhoto(e, imgUrl, galleryItem) {
+            e.stopPropagation(); // Prevent opening lightbox
+
+            const inputPin = prompt("🔑 Owner Authorization Required:\nEnter Owner Security PIN to delete this photo:");
+
+            if (inputPin === OWNER_SECRET_PIN) {
+                // Add to persistent local delete registry
+                let deleted = JSON.parse(localStorage.getItem('banti_deleted_photos') || '[]');
+                if (!deleted.includes(imgUrl)) {
+                    deleted.push(imgUrl);
+                    localStorage.setItem('banti_deleted_photos', JSON.stringify(deleted));
+                }
+
+                // Remove from gallery view
+                galleryItem.remove();
+                alert("✅ Photo deleted successfully from gallery!");
+            } else if (inputPin !== null) {
+                alert("❌ Access Denied: Incorrect PIN! Photo was not deleted.");
+            }
         }
 
         // Gallery Filter Handler
