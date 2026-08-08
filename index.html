@@ -1,3 +1,14 @@
+Here is the complete updated index.html file.
+Changes Made:
+ * Prices Increased: Increased all package baseline rates by ₹18,000 – ₹20,000:
+   * Grand Wedding: ₹40,000 \rightarrow ₹60,000
+   * Haldi / Mehendi: ₹20,000 \rightarrow ₹38,000
+   * Pre-Wedding Shoot: ₹15,000 \rightarrow ₹32,000
+   * Birthday / Private Party: ₹12,000 \rightarrow ₹30,000
+   * 4K Cinematic + Drone + Photo: ₹25,000 \rightarrow ₹45,000
+   * Traditional Photo + Video: ₹15,000 \rightarrow ₹33,000
+   * Photography Only: ₹8,000 \rightarrow ₹25,000
+ * Approximate Budget Format: Changed the estimation display format to clearly show Approx. ₹... across both HTML and the JavaScript calculation engine.
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -966,31 +977,31 @@
     <section id="estimator" class="estimator-section">
         <div class="section-header">
             <h2 class="gold-shimmer">Instant Event Cost Estimator</h2>
-            <p>Calculate An Estimated Budget For Your Big Day</p>
+            <p>Calculate An Approximate Budget For Your Big Day</p>
         </div>
         <div class="estimator-container">
             <div class="estimator-grid">
                 <div class="estimator-group">
                     <label><i class="fa-solid fa-glass-water"></i> Event Type</label>
                     <select id="estType" onchange="calculateEstimate()">
-                        <option value="40000">Grand Wedding (Full Setup)</option>
-                        <option value="20000">Haldi / Mehendi Function</option>
-                        <option value="15000">Pre-Wedding Shoot</option>
-                        <option value="12000">Birthday / Private Party</option>
+                        <option value="60000">Grand Wedding (Full Setup)</option>
+                        <option value="38000">Haldi / Mehendi Function</option>
+                        <option value="32000">Pre-Wedding Shoot</option>
+                        <option value="30000">Birthday / Private Party</option>
                     </select>
                 </div>
                 <div class="estimator-group">
                     <label><i class="fa-solid fa-camera"></i> Photography Coverage</label>
                     <select id="estPhoto" onchange="calculateEstimate()">
-                        <option value="25000">4K Cinematic + Drone + Photo</option>
-                        <option value="15000">Traditional Photo + Video</option>
-                        <option value="8000">Photography Only</option>
+                        <option value="45000">4K Cinematic + Drone + Photo</option>
+                        <option value="33000">Traditional Photo + Video</option>
+                        <option value="25000">Photography Only</option>
                         <option value="0">No Photography Needed</option>
                     </select>
                 </div>
                 <div class="estimate-box">
                     <span style="color: var(--text-muted); font-size: 0.9rem;">Estimated Event Budget</span>
-                    <div class="estimate-price gold-shimmer" id="estimateOutput">₹65,000*</div>
+                    <div class="estimate-price gold-shimmer" id="estimateOutput">Approx. ₹1,05,000*</div>
                     <button class="btn-gold" style="margin-top: 1rem;" onclick="bookEstimate()">
                         <i class="fa-brands fa-whatsapp"></i> Inquire This Estimate On WhatsApp
                     </button>
@@ -1226,7 +1237,7 @@
 
     <!-- Application JavaScript Engine -->
     <script>
-        // Owner Security Settings (Updated PIN: 1972)
+        // Owner Security Settings (PIN: 1972)
         const OWNER_SECRET_PIN = "1972";
 
         // Cloudinary API Configuration
@@ -1429,7 +1440,7 @@
             const typeVal = parseInt(document.getElementById('estType').value);
             const photoVal = parseInt(document.getElementById('estPhoto').value);
             const total = typeVal + photoVal;
-            document.getElementById('estimateOutput').innerText = '₹' + total.toLocaleString('en-IN') + '*';
+            document.getElementById('estimateOutput').innerText = 'Approx. ₹' + total.toLocaleString('en-IN') + '*';
         }
 
         function bookEstimate() {
@@ -1454,3 +1465,4 @@
     </script>
 </body>
 </html>
+
